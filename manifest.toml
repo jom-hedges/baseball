@@ -27,8 +27,9 @@ packages = [
 [requirements]
 gleam_erlang = { version = "~> 0.25" }
 gleam_http = { version = "~> 3.6" }
+gleam_json = { version = "~> 1.0"}
 gleam_otp = { version = "~> 0.10" }
 gleam_stdlib = { version = "~> 0.34 or ~> 1.0" }
 gleeunit = { version = "~> 1.0" }
 mist = { version = "~> 1.2" }
-wisp = { version = "~> 0.16"}
+wisp = { version = "~> 0.16" }
