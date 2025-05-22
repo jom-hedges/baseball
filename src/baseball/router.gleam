@@ -8,7 +8,7 @@ pub fn handle_request(req: Request) -> Response {
   use _req <- web.middlware(req)
 
   // later I will change this to templates, but a string is good for now
-  let body = string_builder.from_string(""<h1>Hello, Joe!</h1>")
+  let body = string_builder.from_string("<h1>Hello, Joe!</h1>")
 
   // return a 200 OK resp with the body and a HTML content type
   wisp.html_response(body, 200)

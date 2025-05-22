@@ -23,7 +23,7 @@ pub fn middleware(
   use <- wisp.rescue_crashes
 
   // Rewrite HEAD requests to GET requests and return and empty body
-  use req = <- wisp.handle_head(req)
+  use req <- wisp.handle_head(req)
 
   // Handle the request
   handle_request(req)
