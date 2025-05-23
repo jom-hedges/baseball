@@ -7,21 +7,23 @@ pub fn build_url(endpoint: String, params: List(tuple(String, String))) -> Strin
     params
     |> List.map(fn(param) { param.0 <> "=" <> param.1 })
     |> String.join("&")
-  if query_string == "" {
-    base_url <> endpoint
-  } else {
-    base_url <> endpoint <> "?" <> query_string
+  case query_string {
+    "" -> base_url <> endpoint
+    _ -> base_url <> endpoint <> "?" <> query_string
   }
 }
 
-pub fn fetch_data() {
-    // todo: makes the HTTP GET request
+pub fn fetch_data(url: String) -> gleam_http.Response(Result(String, String)) {
+  gleam_http.get(url)
 }
 
-pub fn parse_response() {
-    // todo: parses the JSON response into Gleam types
-}
-
-pub fn fetch_and_parse() {
-    // todo: combines the above for convenience
+pub fn fetch_and_parse(endpoint: String, params: List(tuple(String, String))) -> Result(gleam_json.Value, String) {
+  let url = build_url(endpoint, params)
+  let response = fetch_data(url)
+  case response.body {
+    Ok(body) ->
+      gleam_json.decode(body)
+    Error(e) ->
+      Error(e)
+  }
 }
